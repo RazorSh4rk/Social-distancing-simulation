@@ -1,0 +1,14 @@
+#canv1, #canv2{
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+}
+
+.canvas{
+    display: inline-block;
+}
+
+.sep{
+    display: inline-block;
+    width: 5vw;
+}

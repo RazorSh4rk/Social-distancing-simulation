@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Distancing</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://rawgit.com/RazorSh4rk/DrawJS/master/draw.js"></script>
+</head>
+<body>
+
+    <div>
+        <div class="canvas">
+            <p>Infections without social isolation</p>
+            <canvas id="canv1"></canvas>
+        </div>
+        <div class="sep"></div>
+        <div class="canvas">
+            <p>Infections with social isolation</p>
+            <canvas id="canv2"></canvas>
+        </div>
+    </div>
+    
+    <div>
+        Sample size (number of healthy people):<br>
+        <input type="number" id="sample_size" value="999" >
+        <br>
+        Infection chance (% chance of getting infected when coming in contact with a carrier):<br>
+        <input type="number" id="infection_chance" value="0.001">
+        <br>
+        Isolation rate (% of people staying home each day):<br>
+        <input type="number" id="isolation_rate" value="0.5">
+        <br><br>
+        <button id="start" onclick="start()">Start simulation</button>
+    </div>
+
+    <script src="actors.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
