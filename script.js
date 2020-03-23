@@ -2,22 +2,45 @@ const d1 = new DrawJS("canv1")
 d2 = new DrawJS("canv2")
 v1 = new Vertex(0, 200)
 v2 = new Vertex(200, 200)
-infection_chance = parseFloat(document.getElementById('infection_chance').value) == NaN ? 
-0.01 : parseFloat(document.getElementById('infection_chance').value)
-isolation_rate = parseFloat(document.getElementById('isolation_rate').value) == NaN ? 
-0.5 : parseFloat(document.getElementById('isolation_rate').value)
+
+let infection_chance = 0.01
+isolation_rate = 0.5
 
 let days_elapsed = 0
 d1.resize(200, 300)
 d2.resize(200, 300)
 
 const start = () => {
+    infection_chance = parseFloat(document.getElementById('infection_chance').value) == NaN ? 
+        0.01 : parseFloat(document.getElementById('infection_chance').value)
+    isolation_rate = parseFloat(document.getElementById('isolation_rate').value) == NaN ? 
+        0.5 : parseFloat(document.getElementById('isolation_rate').value)
+    sample_size = parseInt(document.getElementById('sample_size').value) == NaN ? 
+        999 : parseInt(document.getElementById('sample_size').value)
 
-    console.log(`running with\ninfection chance: ${infection_chance}
-    \nisolation rate: ${isolation_rate}\nsample size: ${sample_size}`)
+    console.log(`running test with\ninfection chance: ${infection_chance}
+        \nisolation rate: ${isolation_rate}\nsample size: ${sample_size}`)
+
+    let people_isolated = []
+    let people = []
+    let buildings = []
+    let buildings_isolated = []
+
+    for (let i = 0; i < 5; i++) {
+        buildings.push(new Building(i * 40))
+        buildings_isolated.push(new Building(i * 40))
+    }
+
+    for (let i = 0; i < sample_size; i++) {
+        people.push(new Person(false))
+        people_isolated.push(new Person(false))
+    }
+    people.push(new Person(true))
+    people_isolated.push(new Person(true))
 
     // loop 1
     setInterval(() => {
+
         let red = people.filter(el => el.infected).length
 
         if (red != sample_size + 1) {
@@ -57,7 +80,7 @@ const start = () => {
 
             graph_data = graph_data.length < 200 ?
                 graph_data :
-                graph_data.splice(1).map(el => { return { x: el.x - 1, y: el.y } })
+                graph_data.map(el => { return { x: el.x - 1, y: el.y } })
             graph_data.push({ x: days_elapsed, y: 300 - flattened })
             d1.polygon(graph_data, '#0f0', false)
 

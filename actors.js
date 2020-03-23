@@ -1,6 +1,5 @@
 
-const sample_size = parseInt(document.getElementById('sample_size').value) == NaN ? 
-    999 : parseInt(document.getElementById('sample_size').value)
+let sample_size = 999
 
 let graph_data = []
     graph_data_isolated = []
@@ -42,19 +41,3 @@ class Building{
     }
 }
 
-let people_isolated = []
-let people = []
-let buildings = []
-let buildings_isolated = []
-
-for (let i = 0; i < 5; i++) {
-    buildings.push(new Building(i * 40))
-    buildings_isolated.push(new Building(i * 40))
-}
-
-for (let i = 0; i < sample_size; i++) {
-    people.push(new Person(false))
-    people_isolated.push(new Person(false))
-}
-people.push(new Person(true))
-people_isolated.push(new Person(true))
